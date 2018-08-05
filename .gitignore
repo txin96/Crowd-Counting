@@ -102,3 +102,6 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+formatted_data
+image
+annotation
