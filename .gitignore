@@ -107,3 +107,7 @@ image
 annotation
 formatted_trainval
 shanghaitech_part_B
+shanghaitech_part_B_patches_9
+special
+train
+shanghaitech_partA
