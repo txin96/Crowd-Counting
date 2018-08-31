@@ -10,7 +10,6 @@ def my_round(x):
 
 
 ANNOTATION_PATH = 'annotation/annotation_test_stage2.json'
-# ANNOTATION_PATH = 'annotation/annotation_train_stage2.json'
 
 IMG_PATH = 'stage2/test_processed/'
 IMG_SAVE_PATH = 'see'
@@ -72,8 +71,7 @@ for line in reader:
             img = cv2.imread(IMG_PATH + img_name)
             if ssd >= 10:  # 470
                 if resnet < 10:  # 244
-                    number = int(my_round(ssd * 0.307351857 + resnet * 0.253766546 + 7))
-                    # number = int(my_round(ssd * 0.85 + resnet * 0.15))
+                    number = int(my_round(ssd * 0.85 + resnet * 0.15))
                 else:  # 226
                     if ssd - resnet >= 5:  # 72
                         if abs(float(ssd - resnet)) / ssd > 0.4:  # 18
