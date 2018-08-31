@@ -66,19 +66,14 @@ for line in reader:
             else:  # 524
                 if ssd >= 30:  # 233
                     number = int(my_round(ssd * 0.85 + resnet * 0.15))
-
                 else:  # 291
-                    # img_sum += 1
-                    # print line_id, ssd, resnet, img_name, abs(resnet - ssd), abs(
-                    #     float(ssd - resnet)) / ssd, abs(float(resnet - ssd)) / resnet, img.shape[1]
-                    # cv2.imwrite(os.path.join(IMG_SAVE_PATH, img_name), img)
                     number = int(my_round(ssd * 0.85 + resnet * 0.15))
         else:
             img = cv2.imread(IMG_PATH + img_name)
             if ssd >= 10:  # 470
                 if resnet < 10:  # 244
-                    # number = int(my_round(ssd * 0.307351857 + resnet * 0.253766546 + 7))
-                    number = int(my_round(ssd * 0.85 + resnet * 0.15))
+                    number = int(my_round(ssd * 0.307351857 + resnet * 0.253766546 + 7))
+                    # number = int(my_round(ssd * 0.85 + resnet * 0.15))
                 else:  # 226
                     if ssd - resnet >= 5:  # 72
                         if abs(float(ssd - resnet)) / ssd > 0.4:  # 18
@@ -114,11 +109,6 @@ for line in reader:
                 number = int(my_round(ssd * 0.3 + resnet * 0.7))
         elif resnet >= 80:
             if resnet >= 100:
-                # img = cv2.imread(IMG_PATH + img_name)
-                # img_sum += 1
-                # print line_id, ssd, resnet, img_name, abs(resnet - ssd), abs(
-                #     float(ssd - resnet)) / ssd, abs(float(resnet - ssd)) / resnet, img.shape[1]
-                # cv2.imwrite(os.path.join(IMG_SAVE_PATH, img_name), img)
                 number = int(my_round(ssd * 0.8 + resnet * 0.2))
             else:
                 if (resnet - ssd) >= 40:
@@ -182,25 +172,6 @@ for line in reader:
                                 number = int(my_round(ssd * 0.5 + resnet * 0.5))
 
     csv_writer.writerow([line[0], number])
-
-    # if ssd - resnet > 20:
-    #     csv_writer.writerow([line[0], int(my_round(ssd * 0.65 + resnet * 0.35))])
-    # else:
-    #     if resnet > 80:
-    #         if ssd > resnet:
-    #             csv_writer.writerow([line[0], int(my_round((resnet + ssd) / 2))])
-    #         else:
-    #             csv_writer.writerow([line[0], resnet])
-    #     else:
-    #         if ssd == 0:
-    #             csv_writer.writerow([line[0], resnet])
-    #         elif ssd == 1:
-    #             csv_writer.writerow([line[0], ssd])
-    #         # elif 25 > ssd > 1:
-    #         #     csv_writer.writerow([line[0], ssd])
-    #         else:
-    #             num = int(my_round((resnet * 0.4 + ssd * 0.6)))
-    #             csv_writer.writerow([line[0], num])
 
 print img_sum
 print distribution_ssd
