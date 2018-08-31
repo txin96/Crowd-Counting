@@ -181,7 +181,7 @@ for line in reader:
                             else:  # 84
                                 number = int(my_round(ssd * 0.5 + resnet * 0.5))
 
-    # csv_writer.writerow([line[0], number])
+    csv_writer.writerow([line[0], number])
 
     # if ssd - resnet > 20:
     #     csv_writer.writerow([line[0], int(my_round(ssd * 0.65 + resnet * 0.35))])
