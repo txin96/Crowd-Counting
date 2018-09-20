@@ -109,7 +109,7 @@ def res_net_block2(x):
     concat = fluid.layers.concat(input=[conv5_3, conv6_1], axis=1)
     deconv = fluid.layers.conv2d_transpose(input=concat, filter_size=2, num_filters=512, stride=2, padding=0,
                                            groups=512, bias_attr=False,
-                                           param_attr=fluid.ParamAttr(initialzer=fluid.initializer.Constant(value=1.0)
+                                           param_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(value=1.0)
                                                                       , trainable=False))
     concat2 = fluid.layers.concat(input=[x, deconv], axis=1)
     return concat2
@@ -120,17 +120,19 @@ def res_net(x):
     concat = res_net_block2(conv4_3)
     p_conv1 = fluid.layers.conv2d(input=concat, filter_size=3, num_filters=512, stride=1, padding=1,
                                   bias_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(value=0.0),
+							    regularizer=fluid.regularizer.L2DecayRegularizer(0.0),
                                                             learning_rate=2, trainable=True),
                                   param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
     p_conv2 = fluid.layers.conv2d(input=p_conv1, filter_size=3, num_filters=256, stride=1, padding=1,
                                   bias_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(value=0.0),
+							    regularizer=fluid.regularizer.L2DecayRegularizer(0.0),
                                                             learning_rate=2, trainable=True),
                                   param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
     p_conv3 = fluid.layers.conv2d(input=p_conv2, filter_size=1, num_filters=1, stride=1,
                                   bias_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(value=0.0),
-                                                            regularizer=fluid.regularizer.L2DecayRegularizer(0.0),
+							    regularizer=fluid.regularizer.L2DecayRegularizer(0.0),
                                                             learning_rate=20, trainable=True),
                                   param_attr=fluid.ParamAttr(initializer=fluid.initializer.Normal(loc=0.0, scale=0.01),
-                                                             regularizer=fluid.regularizer.L2DecayRegularizer(1.0),
+							   
                                                              learning_rate=10, trainable=True))
     return p_conv3
