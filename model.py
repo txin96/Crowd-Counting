@@ -1,24 +1,6 @@
 import paddle.fluid as fluid
 
 
-def fcn_net(x):
-    conv1 = fluid.layers.conv2d(input=x, num_filters=36, filter_size=9, stride=1, padding=4,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    max_pool1 = fluid.layers.pool2d(input=conv1, pool_size=2, pool_type='max', pool_stride=2, global_pooling=False)
-    conv2 = fluid.layers.conv2d(input=max_pool1, num_filters=72, filter_size=7, stride=1, padding=3,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    max_pool2 = fluid.layers.pool2d(input=conv2, pool_size=2, pool_type='max', pool_stride=2, global_pooling=False)
-    conv3 = fluid.layers.conv2d(input=max_pool2, num_filters=36, filter_size=7, stride=1, padding=3,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    conv4 = fluid.layers.conv2d(input=conv3, num_filters=24, filter_size=7, stride=1, padding=3,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    conv5 = fluid.layers.conv2d(input=conv4, num_filters=16, filter_size=7, stride=1, padding=3,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    conv6 = fluid.layers.conv2d(input=conv5, num_filters=1, filter_size=1, stride=1,
-                                param_attr=fluid.initializer.Normal(loc=0.0, scale=0.01), act="relu")
-    return conv6
-
-
 def res_net_block1(x):
     conv1_1 = fluid.layers.conv2d(input=x, filter_size=3, num_filters=64, stride=1, padding=1,
                                   bias_attr=fluid.ParamAttr(initializer=fluid.initializer.Constant(value=0.0),

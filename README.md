@@ -3,7 +3,7 @@
 ## ResNet-Based Model
 
 - 基于ResNet-18，使用彩色图像做输入，密度图做输出
-- 密度图的生成参考了 Zhang et al. 的论文以及https://github.com/svishwa/crowdcount-mcnn/tree/master/data_preparation
+- 密度图的生成参考了 [(Zhang et al., 2016)](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Zhang_Single-Image_Crowd_Counting_CVPR_2016_paper.pdf) 以及https://github.com/svishwa/crowdcount-mcnn/tree/master/data_preparation
 - 训练时仅使用annotation type为dot的图片
 
 ### Usage
